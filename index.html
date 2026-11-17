@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>האתר של זוהר</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Frank+Ruhl+Libre:wght@300&family=Noto+Rashi+Hebrew:wght@300&family=Karantina:wght@300&family=David+Libre&family=Assistant:wght@400;600&family=Noto+Serif+Hebrew:wght@100;200;300&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3efeb;--card:#fff;--ink:#2f2622;--muted:#6b5c54;--line:#e3dad3;--pick:#8a5a3c;--pick-ink:#fff;--no:#9a3b3b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1916;--card:#26201c;--ink:#f1e7df;--muted:#c4b3a8;--line:#3a312b}}
+:root[data-theme="dark"]{--bg:#1d1916;--card:#26201c;--ink:#f1e7df;--muted:#c4b3a8;--line:#3a312b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 'Assistant',system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+p,h1,h2,h3,label,li{unicode-bidi:plaintext}
+img{display:block;width:100%;height:auto}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.top{padding-top:40px;padding-bottom:8px}
+.top h1{font-size:30px;font-weight:600;line-height:1.25;margin-bottom:10px}
+.top p{color:var(--muted);max-width:66ch}
+.top p + p{margin-top:8px}
+.part{padding:36px 0 8px}
+.part > h2{font-size:23px;font-weight:600;margin-bottom:4px}
+.part > p.lead{color:var(--muted);margin-bottom:16px;max-width:66ch}
+.list{display:grid;gap:24px}
+.site{background:var(--card);border-radius:12px;overflow:hidden;border:2px solid transparent}
+.site.liked{border-color:var(--pick)}
+.site.nope{opacity:.55}
+.shot{position:relative;background:#ddd;cursor:zoom-in}
+.shot .page{display:none}
+.site.full .shot .hero{display:none}
+.site.full .shot .page{display:block}
+.meta{padding:14px 16px 16px;display:grid;gap:10px}
+.meta h3{font-size:19px;font-weight:600;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.meta h3 small{font-size:14px;font-weight:400;color:var(--muted)}
+.meta .why{color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{font:inherit;font-size:15px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--pick);border-color:var(--pick);color:var(--pick-ink)}
+.chip.no[aria-pressed="true"]{background:var(--no);border-color:var(--no)}
+.chip:focus-visible,.tog:focus-visible,.opt:focus-visible{outline:2px solid var(--pick);outline-offset:3px}
+.tog{font:inherit;font-size:14px;background:none;border:none;color:var(--pick);text-decoration:underline;cursor:pointer;padding:4px 0;text-align:start}
+.lbl{font-size:14px;color:var(--muted)}
+textarea{width:100%;min-height:48px;font:inherit;font-size:16px;padding:9px 11px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
+.card{background:var(--card);border-radius:12px;padding:16px}
+.opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.opt{font:inherit;color:var(--ink);text-align:center;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:16px 12px;cursor:pointer}
+.opt[aria-pressed="true"]{border-color:var(--pick);box-shadow:0 0 0 1px var(--pick) inset}
+.opt .name{display:block;font-size:34px;line-height:1.2;margin-bottom:6px}
+.opt .sm{display:block;font-size:14px;color:var(--muted)}
+.sw{display:flex;height:54px;border-radius:8px;overflow:hidden;margin-bottom:10px;border:1px solid var(--line)}
+.sw i{flex:1}
+.photos{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.ph{position:relative;padding:0;border:3px solid transparent;border-radius:10px;overflow:hidden;cursor:pointer;background:none}
+.ph img{aspect-ratio:2/3;object-fit:cover}
+.ph[aria-pressed="true"]{border-color:var(--pick)}
+.ph[aria-pressed="true"]::after{content:"✓";position:absolute;top:6px;inset-inline-start:6px;background:var(--pick);color:#fff;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:15px}
+.q{display:grid;gap:6px;margin-bottom:18px}
+.q label{font-weight:600}
+.send{padding:36px 0 80px}
+.send .card{display:grid;gap:12px;justify-items:start}
+.send button{font:600 18px/1 'Assistant',system-ui,sans-serif;background:#2f7d4f;color:#fff;border:none;border-radius:999px;padding:16px 26px;cursor:pointer}
+.send button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+#count{color:var(--muted);font-size:15px}
+
+/* ---- sketches ---- */
+.toc{position:sticky;top:0;z-index:10;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:8px}
+.toc div{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.toc a{flex:none;font-size:14px;text-decoration:none;color:var(--ink);background:var(--card);padding:6px 12px;border-radius:999px;border:1px solid var(--line)}
+.toc a.done{background:var(--pick);color:var(--pick-ink);border-color:var(--pick)}
+.vsec{padding:26px 0 8px}
+.vsec > h3{font-size:20px;font-weight:600;margin-bottom:2px}
+.vsec > .why{color:var(--muted);margin-bottom:14px;font-size:15px}
+.vopts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,480px),1fr));gap:16px}
+.vopt{background:var(--card);border:2px solid transparent;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.vopt.sel{border-color:var(--pick)}
+.vframe{position:relative;overflow:hidden;background:#fbf7f2;border-bottom:1px solid var(--line)}
+.stage{width:1200px;transform-origin:top right;position:absolute;top:0;right:0}
+.vmeta{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.vmeta .t{display:flex;align-items:center;gap:10px;font-weight:600}
+.vmeta .t b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--bg);font-weight:600}
+.vmeta p.d{color:var(--muted);font-size:15px;flex:1}
+.choose{align-self:flex-start;font:inherit;font-size:15px;border:1px solid var(--pick);color:var(--pick);background:transparent;padding:8px 18px;border-radius:999px;cursor:pointer}
+.vopt.sel .choose{background:var(--pick);color:var(--pick-ink)}
+.choose:focus-visible{outline:2px solid var(--pick);outline-offset:3px}
+.vnote{margin-top:12px}
+.vnote label{display:block;font-size:14px;color:var(--muted);margin-bottom:6px}
+.mk{--g:#fbf7f2;--sand:#f4ebe1;--blush:#efdfd6;--rose:#e6cfc3;--mi:#4a342a;--mm:#735e52;--acc:#8a5a3c;--deep:#3b2a23}
+/* ======== mockup styles (rendered at 1200px, then scaled) ======== */
+.mk{direction:rtl;background:var(--g);color:var(--mi);font:300 17px/1.65 'Heebo',sans-serif}
+.mk *{box-sizing:border-box}
+.mk p{unicode-bidi:plaintext}
+.mk .s{font-family:'Noto Serif Hebrew',serif;font-weight:200;line-height:1.15}
+.mk .h1{font-size:76px;font-weight:100}
+.mk .h2{font-size:40px}
+.mk .h3{font-size:26px;font-weight:300}
+.mk .lead{font-family:'Noto Serif Hebrew',serif;font-weight:200;font-size:26px;line-height:1.4}
+.mk .sm{font-size:14px;color:var(--mm)}
+.mk .btn{display:inline-block;background:var(--acc);color:#fbf7f2;font:400 15px/1 'Heebo',sans-serif;padding:14px 24px;border-radius:999px}
+.mk .lnk{color:var(--acc);text-decoration:underline;text-underline-offset:5px;font-weight:400}
+.mk img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block}
+.mk .pad{padding:56px 64px}
+.mk .row{display:flex;gap:24px}
+.mk .bar{display:flex;justify-content:space-between;align-items:center;padding:20px 64px;font-size:14px;color:var(--mm)}
+.mk .bar .s{font-size:19px;font-weight:300;color:var(--mi)}
+.mk ul{list-style:none;padding:0;margin:0}
+.mk li{padding:4px 0}
+.mk .dot li::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--acc);margin-inline-end:12px;vertical-align:middle}
+</style>
+</head>
+<body>
+<header class="top wrap">
+  <h1>זוהר, בואי נבנה לך את האתר שאת הכי אוהבת</h1>
+  <p>כאן יש דוגמאות של אתרים אמיתיים מעולם החתונות והיופי, וכמה שאלות קצרות. סמני מה את אוהבת ומה לא, ואני אבנה ממה שבחרת.</p>
+  <p>לא צריך להירשם ולא צריך להתחבר. זה לוקח בערך רבע שעה. בסוף לוחצים על הכפתור הירוק, והתשובות נשלחות אליי בוואטסאפ. אפשר לסגור באמצע ולחזור, הבחירות נשמרות בטלפון או במחשב שלך.</p>
+</header>
+
+<main class="wrap">
+<section class="part" aria-labelledby="p1">
+  <h2 id="p1">1. אתרים לדוגמה</h2>
+  <p class="lead">אלה אתרים אמיתיים של מעצבות שמלות כלה, צלמי חתונות ומותגי איפור, וכל אחד בסגנון אחר. בכל אחד סמני מה אהבת בו (אפשר כמה דברים), או "לא בשבילי". לחיצה על התמונה מראה את המשך העמוד.</p>
+  <div class="list" id="list"></div>
+</section>
+
+<section class="part" aria-labelledby="p2">
+  <h2 id="p2">2. איך השם שלך ייראה</h2>
+  <p class="lead">זה הפונט של הכותרות באתר. איזה מהם הכי מרגיש כמוך?</p>
+  <div class="opts" data-one="font">
+    <button class="opt" type="button" data-v="בלפייר"><span class="name" style="font-family:'Bellefair',serif">זוהר ימיני</span><span class="sm">עדין וקלאסי</span></button>
+    <button class="opt" type="button" data-v="פרנק רוהל"><span class="name" style="font-family:'Frank Ruhl Libre',serif;font-weight:300">זוהר ימיני</span><span class="sm">דק ויוקרתי</span></button>
+    <button class="opt" type="button" data-v="רש&quot;י"><span class="name" style="font-family:'Noto Rashi Hebrew',serif;font-weight:300">זוהר ימיני</span><span class="sm">רך ומיוחד</span></button>
+    <button class="opt" type="button" data-v="קרנטינה"><span class="name" style="font-family:'Karantina',sans-serif;font-weight:300;font-size:44px">זוהר ימיני</span><span class="sm">צר ואופנתי</span></button>
+    <button class="opt" type="button" data-v="דוד"><span class="name" style="font-family:'David Libre',serif">זוהר ימיני</span><span class="sm">חם ומוכר</span></button>
+  </div>
+</section>
+
+<section class="part" aria-labelledby="p3">
+  <h2 id="p3">3. צבעים</h2>
+  <p class="lead">איזה שילוב צבעים הכי מתאים לך?</p>
+  <div class="opts" data-one="color">
+    <button class="opt" type="button" data-v="חום ושמנת חם"><span class="sw"><i style="background:#f4ede6"></i><i style="background:#ecdfd6"></i><i style="background:#8a5a3c"></i><i style="background:#3e2e27"></i></span><span class="sm">חום ושמנת חם, כמו היום</span></button>
+    <button class="opt" type="button" data-v="לבן נקי ושחור"><span class="sw"><i style="background:#ffffff"></i><i style="background:#f2f2f2"></i><i style="background:#8c8c8c"></i><i style="background:#1c1c1c"></i></span><span class="sm">לבן נקי ושחור</span></button>
+    <button class="opt" type="button" data-v="ורוד אבקתי"><span class="sw"><i style="background:#fbf3f1"></i><i style="background:#f1dcd7"></i><i style="background:#c99a92"></i><i style="background:#5a3e3b"></i></span><span class="sm">ורוד אבקתי</span></button>
+    <button class="opt" type="button" data-v="כהה וזהב"><span class="sw"><i style="background:#1f1a17"></i><i style="background:#3a302a"></i><i style="background:#c3a36b"></i><i style="background:#f3ece2"></i></span><span class="sm">כהה וזהב</span></button>
+    <button class="opt" type="button" data-v="ירוק מרווה ושמנת"><span class="sw"><i style="background:#f5f1ea"></i><i style="background:#dfe3d6"></i><i style="background:#8c9a80"></i><i style="background:#33392f"></i></span><span class="sm">ירוק מרווה ושמנת</span></button>
+  </div>
+</section>
+
+<section class="part" aria-labelledby="p4">
+  <h2 id="p4">4. איך כלה צריכה להרגיש כשהיא נכנסת לאתר?</h2>
+  <p class="lead">אפשר לבחור עד שלוש.</p>
+  <div class="row" data-many="feel" data-max="3">
+    <button class="chip" type="button" data-v="עדין">עדין</button>
+    <button class="chip" type="button" data-v="יוקרתי">יוקרתי</button>
+    <button class="chip" type="button" data-v="חם ואישי">חם ואישי</button>
+    <button class="chip" type="button" data-v="רומנטי">רומנטי</button>
+    <button class="chip" type="button" data-v="מודרני ונקי">מודרני ונקי</button>
+    <button class="chip" type="button" data-v="שמח וקליל">שמח וקליל</button>
+    <button class="chip" type="button" data-v="דרמטי">דרמטי</button>
+  </div>
+</section>
+
+<section class="part" aria-labelledby="p5">
+  <h2 id="p5">5. התמונות שלך</h2>
+  <p class="lead">אילו תמונות מהעבודות שלך את הכי אוהבת? הראשונה שתסמני תהיה התמונה הגדולה בפתיחה של האתר.</p>
+  <div class="photos" data-many="photos" id="photos"></div>
+</section>
+
+<section class="part" aria-labelledby="p6s">
+  <h2 id="p6s">6. סקיצות לכל חלק באתר</h2>
+  <p class="lead">האתר בנוי מתשעה חלקים, ולכל חלק יש כאן חמש סקיצות שונות עם הטקסטים והתמונות שלך. בכל חלק לוחצים "זה" על מה שהכי אהבת. אפשר גם לכתוב הערה, למשל "את B, אבל עם הצבע של D".</p>
+  <nav class="toc" aria-label="החלקים"><div id="toc"></div></nav>
+  <div id="secs"></div>
+</section>
+
+<section class="part" aria-labelledby="p6">
+  <h2 id="p6">7. כמה מילים ממך</h2>
+  <div class="card">
+    <div class="q"><label for="t1">מה הכי חשוב שכלה תבין עלייך בשניות הראשונות באתר?</label><textarea id="t1" data-text="important"></textarea></div>
+    <div class="q"><label for="t2">יש משהו שאת לא רוצה לראות באתר?</label><textarea id="t2" data-text="avoid"></textarea></div>
+    <div class="q"><label for="t3">יש אתר או עמוד אינסטגרם שאת אוהבת את העיצוב שלו? (לא חייב של איפור)</label><textarea id="t3" data-text="loves"></textarea></div>
+    <div class="q"><label for="t4">משהו נוסף?</label><textarea id="t4" data-text="more"></textarea></div>
+  </div>
+</section>
+
+<section class="send" aria-labelledby="p7">
+  <div class="card">
+    <h2 id="p7" style="font-size:23px;font-weight:600">סיימת? שלחי לי</h2>
+    <p id="count"></p>
+    <button type="button" id="go">לשלוח לרונן בוואטסאפ</button>
+    <p class="lbl">ייפתח וואטסאפ עם כל הבחירות שלך כתובות בהודעה. נשאר רק ללחוץ שליחה.</p>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var PHONE='972529095200';
+  var SITES=[
+    {n:1,name:'Ethan Wong',cat:'צלם חתונות',note:'צילום על כל המסך בלי טקסט מיותר, ותפריט קטן ועדין בפינות.',h:'01-ethanwong-hero.webp',p:'01-ethanwong-page.webp'},
+    {n:2,name:'פנינה טורנאי',cat:'מעצבת שמלות כלה',note:'רשת של תמונות בתוך מסגרות דקות על רקע לבן, כמו עמוד במגזין.',h:'02-pninatornai-hero.webp',p:'02-pninatornai-page.webp'},
+    {n:3,name:'ענבל דרור',cat:'מעצבת שמלות כלה',note:'לוגו בגוון זהב ורקע שמנת חם, עם הרבה אוויר בין התמונות.',h:'03-inbaldror-hero.webp',p:'03-inbaldror-page.webp'},
+    {n:4,name:'ליהי הוד',cat:'מעצבת שמלות כלה',note:'כותרת באותיות רכות מעל תמונה שקטה, ותפריט דק מאוד.',h:'04-lihihod-hero.webp',p:'04-lihihod-page.webp'},
+    {n:5,name:'Sarah Seven',cat:'מעצבת שמלות כלה',note:'תמונה על כל המסך עם כיתוב דק ומרווח, בלי עומס.',h:'05-sarahseven-hero.webp',p:'05-sarahseven-page.webp'},
+    {n:6,name:'Claire Pettibone',cat:'מעצבת שמלות כלה',note:'תמונות כמו ציורים וכותרת בכתב יד, עם הרגשה של ספר ישן ויפה.',h:'06-claire-pettibone-hero.webp',p:'06-claire-pettibone-page.webp'},
+    {n:7,name:'RMS Beauty',cat:'מותג איפור',note:'רקע בהיר וכותרות בכתב נטוי דק, והכל מסודר עם הרבה רווח.',h:'07-rmsbeauty-hero.webp',p:'07-rmsbeauty-page.webp'},
+    {n:8,name:'Kjaer Weis',cat:'מותג איפור',note:'תמונת שדה חמה עם שם המותג באותיות גדולות, וגוונים של אדמה.',h:'08-kjaerweis-hero.webp',p:'08-kjaerweis-page.webp'},
+    {n:9,name:'KT Merry',cat:'צלמת חתונות',note:'כותרות גדולות עם מילה בכתב נטוי, ורקעים בירוק מרווה ושמנת.',h:'09-ktmerry-hero.webp',p:'09-ktmerry-page.webp'},
+    {n:10,name:'Rime Arodaky',cat:'סטודיו לשמלות כלה',note:'דיוקן גדול על רקע בז\' רך, עם תפריט קטן שכמעט לא מורגש.',h:'10-rimearodaky-hero.webp',p:'10-rimearodaky-page.webp'},
+    {n:11,name:'Amy Osaba',cat:'מעצבת פרחים לחתונות',note:'לוגו באותיות גדולות, תמונות בשחור לבן, וטקסט קטן ומרווח.',h:'11-amyosaba-hero.webp',p:'11-amyosaba-page.webp'}
+  ];
+  var TAGS=[['המסך הראשון'],['האותיות'],['הצבעים'],['איך מוצגות התמונות'],['האוויר והמרווחים'],['האווירה הכללית']];
+  var PHOTOS=['hero-bride','hero','w1','w2','w3','w4','w5','w6','w7','w8','skin','mirror'];
+
+  var KEY='zohar-brief-v1';
+  var st={likes:{},no:{},notes:{},font:'',color:'',feel:[],photos:[],text:{},picks:{},pnotes:{}};
+  try{var saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved)st=Object.assign(st,saved);}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+
+  var list=document.getElementById('list');
+  SITES.forEach(function(s){
+    var el=document.createElement('article');el.className='site';el.id='s'+s.n;
+    el.innerHTML='<div class="shot" title="לחיצה מראה את המשך העמוד"><img class="hero" src="real/'+s.h+'" alt="המסך הראשון באתר של '+s.name+'" loading="lazy"><img class="page" src="real/'+s.p+'" alt="המשך העמוד באתר של '+s.name+'" loading="lazy"></div>'+
+      '<div class="meta"><h3>'+s.n+'. '+s.name+' <small>'+s.cat+'</small></h3><p class="why">'+s.note+'</p>'+
+      '<div class="row"><span class="lbl">מה אהבת:</span>'+TAGS.map(function(t){return '<button class="chip" type="button" data-t="'+t[0]+'" aria-pressed="false">'+t[0]+'</button>'}).join('')+'<button class="chip no" type="button" data-t="no" aria-pressed="false">לא בשבילי</button></div>'+
+      '<button class="tog" type="button">להראות את המשך העמוד</button>'+
+      '<textarea data-n="'+s.n+'" placeholder="הערה על האתר הזה (לא חובה)"></textarea></div>';
+    list.appendChild(el);
+  });
+  var ph=document.getElementById('photos');
+  PHOTOS.forEach(function(p){var b=document.createElement('button');b.type='button';b.className='ph';b.dataset.v=p;b.setAttribute('aria-pressed','false');b.innerHTML='<img src="img/'+p+'.webp" alt="עבודה של זוהר" loading="lazy">';ph.appendChild(b);});
+
+
+  /* ---- sketches ---- */
+var I='img/';
+function im(f,h,pos){return '<div style="height:'+h+'px;overflow:hidden"><img src="'+I+f+'" alt="" loading="lazy" style="object-position:'+(pos||'50% 22%')+'"></div>';}
+var WA='<span class="btn">בדיקת זמינות לתאריך שלי</span>';
+var BAR='<div class="bar"><span class="s">זוהר ימיני</span><span>עבודות · חבילות · נעים להכיר · שאלות</span></div>';
+var LEAD='להיכנס לחופה ולהרגיש בדיוק כמו שחלמת.';
+var SUB='איפור כלה בהתאמה אישית, עם הכנת עור מדויקת, התאמה לסגנון שלך ועמידות שנשארת איתך מההתארגנות ועד הריקוד האחרון.';
+var Q=[['כמה זמן מראש כדאי לסגור תאריך?','תאריכים לעונת החתונות נסגרים חודשים מראש. ברגע שיש לך תאריך, הכי כדאי לשלוח הודעה ולבדוק זמינות.'],['את מגיעה אליי ביום החתונה?','כן, אני מגיעה אלייך למקום ההתארגנות עם כל הציוד.'],['אפשר לשלב גם איפור לאמא ולמלוות?','כן. אומרות לי מראש כמה מתאפרות יש, ואני בונה שעה לכל אחת.'],['כמה זמן האיפור מחזיק?','מהבוקר ועד הערב. בנוי לחום, לריקודים וגם לקצת דמעות.'],['אני לא אוהבת איפור כבד. זה יתאים לי?','כן, זה הסגנון שלי.']];
+var BRIDE=['שיחת ייעוץ לפני','הגעה עד למקום ההתארגנות','הכנה טובה של העור','התאמה אישית מלאה','טאצ\'אפים לפני היציאה','עמידות עד הריקוד האחרון','ערכת טאצ\'אפ איתך','ליווי לאולם'];
+var EVE=['שיחת ייעוץ','הגעה למקום ההתארגנות','הכנה טובה של העור','התאמה אישית מלאה','עמידות לאורך כל האירוע','ריסים','שעה לכל מתאפרת'];
+function lis(a){return '<ul class="dot">'+a.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>';}
+var STEPS=[['מדברות לפני','מה את אוהבת, מה הסגנון שלך, ואיך את מדמיינת את עצמך ביום הגדול.','mirror.webp'],['יום החתונה','מגיעה אלייך עם כל הציוד. ניקוי, לחות לפי סוג העור, ומשם לאיפור.','ready.webp'],['עד סוף הערב','איפור שמחזיק את כל האירוע, ערכת טאצ\'אפ וליווי לאולם.','dance.webp']];
+var WORK=['w2.webp','w3.webp','w4.webp','w7.webp','about.webp','w8.webp','w1.webp','w5.webp'];
+
+var S=[
+{id:'hero',name:'המסך הראשון',why:'מה שהכלה רואה בשנייה הראשונה: מי זו, מה היא עושה, וכפתור וואטסאפ.',rec:'E',o:[
+ ['A','טקסט ושתי תמונות','השם והטקסט מימין, תמונה גדולה וקטנה משמאל.',function(){return BAR+'<div class="pad" style="padding-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center"><div><p class="sm">איפור כלות</p><p class="s h1">זוהר ימיני</p><p class="lead" style="margin:16px 0 12px">'+LEAD+'</p><p>'+SUB+'</p><div style="margin-top:24px">'+WA+'</div></div><div style="display:grid;grid-template-columns:1.6fr 1fr;gap:14px;align-items:end">'+im('hero.webp',440)+'<div style="margin-bottom:40px">'+im('w1.webp',260)+'</div></div></div>';}],
+ ['B','תמונה לכל הרוחב','תמונה אחת גדולה לכל רוחב המסך, והטקסט בפינה התחתונה על הצללה עדינה.',function(){return '<div style="position:relative;height:640px">'+im('w1.webp',640,'50% 18%')+'<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(40,28,22,.62),rgba(40,28,22,0) 55%)"></div><div style="position:absolute;top:0;inset-inline:0;color:#fbf7f2" class="bar"><span class="s" style="color:#fbf7f2">זוהר ימיני</span><span style="color:#f4e9dc">עבודות · חבילות · שאלות</span></div><div style="position:absolute;bottom:56px;right:64px;color:#fbf7f2;max-width:560px"><p class="s h1" style="color:#fbf7f2">זוהר ימיני</p><p class="lead" style="margin:10px 0 20px">'+LEAD+'</p>'+WA+'</div></div>';}],
+ ['C','שם במרכז ושלוש תמונות','השם והמשפט במרכז, ומתחתם פס של שלוש תמונות צמודות.',function(){return BAR+'<div style="text-align:center;padding:20px 64px 32px"><p class="sm">איפור כלות</p><p class="s h1">זוהר ימיני</p><p class="lead" style="margin:10px auto 22px;max-width:620px">'+LEAD+'</p>'+WA+'</div><div style="display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:10px;padding:0 64px">'+im('w2.webp',330)+im('hero.webp',330)+im('w3.webp',330)+'</div><div style="height:40px"></div>';}],
+ ['D','חצי תמונה, חצי טקסט','המסך מחולק לשניים: תמונה מקצה לקצה בחצי אחד, טקסט על רקע ורוד בחצי השני.',function(){return '<div style="display:grid;grid-template-columns:1fr 1fr;height:640px"><div style="background:var(--blush);padding:28px 64px;display:flex;flex-direction:column"><span class="s" style="font-size:19px;font-weight:300">זוהר ימיני</span><div style="margin:auto 0"><p class="sm">איפור כלות</p><p class="s h1">זוהר ימיני</p><p class="lead" style="margin:14px 0 12px">'+LEAD+'</p><p>'+SUB+'</p><div style="margin-top:24px">'+WA+'</div></div></div>'+im('hero.webp',640)+'</div>';}],
+ ['E','תמונה בקשת','התמונה במסגרת עם קשת למעלה, כמו מראה או חלון של חתונה. רך ומזוהה עם כלות.',function(){return BAR+'<div class="pad" style="padding-top:20px;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center"><div><p class="sm">איפור כלות</p><p class="s h1">זוהר ימיני</p><p class="lead" style="margin:16px 0 12px">'+LEAD+'</p><p>'+SUB+'</p><div style="margin-top:24px">'+WA+'</div><p class="sm" style="margin-top:12px">מספר התאריכים בעונה מוגבל.</p></div><div style="border-radius:260px 260px 0 0;overflow:hidden">'+im('hero.webp',520)+'</div></div>';}]
+]},
+{id:'gallery',name:'העבודות',why:'איך מציגים את העבודות שלה.',rec:'B',o:[
+ ['A','הדפסים בגבהים שונים','תמונות בגבהים שונים, עם כיתוב קטן.',function(){return '<div class="pad" style="background:var(--sand)"><p class="s h2" style="margin-bottom:24px">העבודות של זוהר</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start"><div>'+im('w2.webp',360)+'<p class="sm" style="margin-top:6px">זוהר</p></div><div style="margin-top:70px">'+im('w3.webp',300)+'<p class="sm" style="margin-top:6px">רך</p></div><div style="margin-top:20px">'+im('w4.webp',330)+'<p class="sm" style="margin-top:6px">עדין</p></div></div></div>';}],
+ ['B','רשת אחידה וצפופה','שמונה תמונות באותו גודל, ארבע בשורה, עם רווח קטן. נקי ומסודר.',function(){return '<div class="pad" style="background:var(--sand)"><div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:20px"><p class="s h2">העבודות של זוהר</p><span class="lnk">לעוד עבודות באינסטגרם</span></div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">'+WORK.map(function(f){return im(f,260)}).join('')+'</div></div>';}],
+ ['C','גלילה לצדדים','שורה אחת של תמונות גדולות שגוללים ימינה ושמאלה, כמו באינסטגרם.',function(){return '<div style="background:var(--sand);padding:56px 0 56px 0"><div style="padding:0 64px;display:flex;justify-content:space-between;align-items:end;margin-bottom:20px"><p class="s h2">העבודות של זוהר</p><span class="sm">← גוללים לצדדים</span></div><div style="display:flex;gap:12px;padding-right:64px;overflow:hidden">'+WORK.slice(0,5).map(function(f){return '<div style="flex:0 0 300px">'+im(f,400)+'</div>'}).join('')+'</div></div>';}],
+ ['D','פסיפס: אחת גדולה וארבע קטנות','תמונה מרכזית גדולה, וארבע קטנות סביבה.',function(){return '<div class="pad" style="background:var(--sand)"><p class="s h2" style="margin-bottom:20px">העבודות של זוהר</p><div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:230px 230px;gap:10px"><div style="grid-row:1/3">'+im('w2.webp',470)+'</div>'+im('w3.webp',230)+im('w4.webp',230)+im('w7.webp',230)+im('w8.webp',230)+'</div></div>';}],
+ ['E','בלי רווחים, מקצה לקצה','תמונות צמודות זו לזו לכל רוחב המסך, בלי מסגרת ובלי כיתוב.',function(){return '<div style="background:var(--sand);padding-top:48px"><p class="s h2" style="text-align:center;margin-bottom:20px">העבודות של זוהר</p><div style="display:grid;grid-template-columns:repeat(5,1fr)">'+WORK.slice(0,5).map(function(f){return im(f,330)}).join('')+'</div></div>';}]
+]},
+{id:'skin',name:'הגישה שלה (קודם כל העור)',why:'הסקשן שמסביר למה האיפור שלה נראה כמו עור.',rec:'C',o:[
+ ['A','טקסט ותמונה זה לצד זה','פסקאות מימין, תמונה משמאל. פשוט וברור.',function(){return '<div class="pad" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center"><div><p class="s h2">קודם כל העור</p><p class="lead" style="margin:10px 0 14px;font-size:22px">איפור שנראה כמו עור, רק בגרסה טובה יותר.</p><p>אני מתחילה מהעור. ניקוי, לחות, פרימר לפי סוג העור, ורק אחרי זה אני נוגעת באיפור. אחר כך שכבות דקות, וכיסוי רק במקומות שצריכים.</p></div>'+im('skin.webp',420)+'</div>';}],
+ ['B','כרטיס על התמונה','תמונה רחבה, וכרטיס טקסט בהיר שעולה עליה בפינה.',function(){return '<div style="position:relative;padding:48px 64px">'+im('skin.webp',460,'50% 30%')+'<div style="position:absolute;bottom:80px;right:110px;background:var(--g);padding:32px 36px;max-width:460px"><p class="s h2">קודם כל העור</p><p style="margin-top:10px">ניקוי, לחות ופרימר לפי סוג העור, ורק אחר כך איפור בשכבות דקות. כך העור נשאר עור, גם בזום מלא של הצלם.</p></div></div>';}],
+ ['C','שלושה שלבים קצרים','שלוש עמודות קצרות: ניקוי, שכבות דקות, עמידות, עם תמונה אחת לצד.',function(){return '<div class="pad" style="display:grid;grid-template-columns:2fr 1fr;gap:40px;align-items:center"><div><p class="s h2" style="margin-bottom:22px">קודם כל העור</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px"><div><p class="s h3">ניקוי ולחות</p><p class="sm" style="color:var(--mi)">פרימר לפי סוג העור, לפני כל איפור.</p></div><div><p class="s h3">שכבות דקות</p><p class="sm" style="color:var(--mi)">כיסוי רק איפה שצריך. העור נשאר עור.</p></div><div><p class="s h3">גם בזום</p><p class="sm" style="color:var(--mi)">נראה טוב מקרוב ומול המצלמה.</p></div></div></div>'+im('skin.webp',340)+'</div>';}],
+ ['D','משפט אחד במרכז','בלי פסקאות: משפט אחד גדול ועדין במרכז, ותמונה קטנה מתחתיו.',function(){return '<div class="pad" style="text-align:center"><p class="s" style="font-size:44px;font-weight:100;max-width:780px;margin:0 auto">איפור שנראה כמו עור, רק בגרסה טובה יותר.</p><p style="max-width:560px;margin:16px auto 24px">ניקוי, לחות ופרימר לפי סוג העור, ורק אחר כך שכבות דקות.</p><div style="width:280px;margin:0 auto">'+im('skin.webp',300)+'</div></div>';}],
+ ['E','לפני ואחרי במילים','צד אחד "מה לא רוצים" (כבד, מסכה), צד שני "מה כן" (עור, טבעי), ותמונה.',function(){return '<div class="pad" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;align-items:center"><div style="background:var(--sand);padding:28px"><p class="s h3">מה לא</p><p style="margin-top:8px">איפור כבד שמרגיש כמו מסכה, ולא נראה כמוך בתמונות.</p></div><div style="background:var(--blush);padding:28px"><p class="s h3">מה כן</p><p style="margin-top:8px">עור שנראה כמו עור. שכבות דקות, כיסוי רק איפה שצריך.</p></div>'+im('skin.webp',320)+'</div>';}]
+]},
+{id:'process',name:'מה את מקבלת בפועל',why:'שלושת השלבים: לפני, ביום עצמו, עד סוף הערב.',rec:'B',o:[
+ ['A','פסים נפתחים','שלושה פסים צבעוניים, לוחצים ואחד נפתח עם תמונה.',function(){return '<div class="pad"><p class="s h2" style="margin-bottom:18px">מה את מקבלת בפועל</p><div style="display:flex;height:320px"><div style="flex:4;background:var(--sand);display:grid;grid-template-columns:1fr 44%"><div style="padding:28px"><p class="s h2">מדברות לפני</p><p style="margin-top:10px">מה את אוהבת, מה הסגנון שלך, ואיך את מדמיינת את עצמך.</p></div>'+im('mirror.webp',320)+'</div><div style="flex:1;background:var(--blush)"></div><div style="flex:1;background:var(--rose)"></div></div></div>';}],
+ ['B','שלוש עמודות עם תמונות','שלוש תמונות זו לצד זו, ומתחת לכל אחת כותרת ושורה.',function(){return '<div class="pad"><p class="s h2" style="margin-bottom:22px">מה את מקבלת בפועל</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">'+STEPS.map(function(s){return '<div>'+im(s[2],300)+'<p class="s h3" style="margin-top:14px">'+s[0]+'</p><p>'+s[1]+'</p></div>'}).join('')+'</div></div>';}],
+ ['C','ציר זמן אנכי','שלושה שלבים זה מתחת לזה, עם תמונה קטנה לכל שלב.',function(){return '<div class="pad" style="display:grid;grid-template-columns:1fr 2fr;gap:40px"><p class="s h2">מה את מקבלת בפועל</p><div>'+STEPS.map(function(s){return '<div style="display:grid;grid-template-columns:140px 1fr;gap:22px;align-items:center;margin-bottom:16px">'+im(s[2],140)+'<div><p class="s h3">'+s[0]+'</p><p>'+s[1]+'</p></div></div>'}).join('')+'</div></div>';}],
+ ['D','לשוניות','שלוש לשוניות למעלה, ותוכן אחד מוצג בכל פעם.',function(){return '<div class="pad"><p class="s h2" style="margin-bottom:18px">מה את מקבלת בפועל</p><div style="display:flex;gap:8px;margin-bottom:18px"><span class="btn">מדברות לפני</span><span class="btn" style="background:var(--sand);color:var(--mi)">יום החתונה</span><span class="btn" style="background:var(--sand);color:var(--mi)">עד סוף הערב</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center"><p class="lead" style="font-size:24px">מה את אוהבת, מה הסגנון שלך, מה את בטוחה שאת לא רוצה, ואיך את מדמיינת את עצמך ביום הגדול.</p>'+im('mirror.webp',300)+'</div></div>';}],
+ ['E','רק טקסט, בלי תמונות','שלוש שורות פשוטות על רקע ורוד. הכי קצר.',function(){return '<div class="pad" style="background:var(--blush)"><p class="s h2" style="margin-bottom:20px">מה את מקבלת בפועל</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:36px">'+STEPS.map(function(s){return '<div><p class="s h3">'+s[0]+'</p><p style="margin-top:6px">'+s[1]+'</p></div>'}).join('')+'</div></div>';}]
+]},
+{id:'reviews',name:'המלצות',why:'צילומי ההודעות של הכלות, ואיך להבליט אותן.',rec:'C',o:[
+ ['A','ציטוט וצילומים','ציטוט אחד באמצע, ומתחתיו ארבעה צילומי מסך.',function(){return '<div class="pad" style="background:var(--blush);text-align:center"><p class="sm">מה כלות כותבות אחרי החתונה</p><p class="s" style="font-size:44px;font-weight:100;margin:10px 0 26px">"אין אחד שלא החמיא על האיפור שלך"</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">'+['q2.webp','q3.webp','q4.webp','q1.webp'].map(function(f){return im(f,260,'50% 0')}).join('')+'</div></div>';}],
+ ['B','גלילה של צילומי מסך','שורה ארוכה של צילומי ההודעות שגוללים לצדדים.',function(){return '<div style="background:var(--blush);padding:48px 0"><p class="s h2" style="padding:0 64px;margin-bottom:20px">מה כלות כותבות</p><div style="display:flex;gap:14px;padding-right:64px;overflow:hidden">'+['q2.webp','q3.webp','q4.webp','q1.webp','q2.webp'].map(function(f){return '<div style="flex:0 0 250px;border-radius:14px;overflow:hidden">'+im(f,420,'50% 0')+'</div>'}).join('')+'</div></div>';}],
+ ['C','שתי המלצות גדולות','שני ציטוטים אמיתיים בטקסט גדול, כל אחד עם הצילום שלו לצד.',function(){return '<div class="pad" style="background:var(--blush)"><p class="s h2" style="margin-bottom:22px">מה כלות כותבות אחרי החתונה</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:36px"><div style="display:grid;grid-template-columns:1fr 150px;gap:18px;align-items:center"><p class="lead" style="font-size:24px">"ראיתי את זה בתמונות, אבל במציאות זה אחרת לגמרי. איפרת אותי נדיר, בדיוק כמו שרציתי."</p>'+im('q3.webp',240,'50% 0')+'</div><div style="display:grid;grid-template-columns:1fr 150px;gap:18px;align-items:center"><p class="lead" style="font-size:24px">"אין אחד שלא החמיא על האיפור שלך. ממש שמחה שאיפרת אותי."</p>'+im('q4.webp',240,'50% 0')+'</div></div></div>';}],
+ ['D','בתוך מסגרת של טלפון','צילומי המסך בתוך מסגרות של טלפון, כאילו פותחים וואטסאפ.',function(){return '<div class="pad" style="background:var(--blush);display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:center"><div><p class="s h2">מה כלות כותבות</p><p style="margin-top:10px">הודעות אמיתיות שכלות שלחו לזוהר אחרי החתונה.</p></div><div style="display:flex;gap:18px;justify-content:center">'+['q2.webp','q3.webp','q4.webp'].map(function(f){return '<div style="flex:0 0 180px;border:8px solid #2b211d;border-radius:26px;overflow:hidden">'+im(f,330,'50% 0')+'</div>'}).join('')+'</div></div>';}],
+ ['E','קיר של הודעות','הרבה צילומים קטנים צפופים, מרגיש כמו "יש המון כלות מרוצות".',function(){return '<div class="pad" style="background:var(--blush)"><p class="s h2" style="text-align:center;margin-bottom:20px">מה כלות כותבות</p><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px">'+['q2.webp','q3.webp','q4.webp','q1.webp','q3.webp','q2.webp'].map(function(f){return im(f,230,'50% 0')}).join('')+'</div></div>';}]
+]},
+{id:'about',name:'נעים להכיר',why:'זוהר מספרת על עצמה. יש תמונת פרופיל קטנה ושתי תמונות מהסט.',rec:'B',o:[
+ ['A','טקסט ושלוש תמונות','פסקאות מימין, שלוש תמונות משמאל.',function(){return '<div class="pad" style="display:grid;grid-template-columns:1fr 1fr;gap:44px"><div><p class="s h2">נעים להכיר, זוהר</p><p style="margin-top:10px">האהבה שלי לאיפור הייתה איתי כל החיים. הדרך שלי עברה גם דרך עולם ההפקות והצילום, ושם למדתי עד כמה עור הוא הבסיס להכול.</p><p class="s h3" style="margin-top:18px">שלך, זוהר</p></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">'+im('set1.webp',220)+im('set2.webp',220)+'</div></div>';}],
+ ['B','מכתב אישי','כמו מכתב: טקסט צר במרכז, תמונת פרופיל עגולה וחתימה. אינטימי.',function(){return '<div class="pad" style="background:var(--sand)"><div style="max-width:620px;margin:0 auto;text-align:center"><div style="width:110px;height:110px;border-radius:50%;overflow:hidden;margin:0 auto 18px">'+im('me.webp',110)+'</div><p class="s h2">נעים להכיר, זוהר</p><p style="margin-top:12px">האהבה שלי לאיפור הייתה איתי כל החיים. הדרך שלי עברה גם דרך עולם ההפקות והצילום. היום אני מאמינה שאיפור נכון לא אמור להסתיר אותך, אלא להדגיש את מה שכבר יפה בך.</p><p class="s" style="font-size:30px;margin-top:16px">שלך, זוהר</p></div></div>';}],
+ ['C','רצועת תמונות מהסט','טקסט קצר, ומתחתיו פס של תמונות מאחורי הקלעים.',function(){return '<div class="pad"><div style="display:grid;grid-template-columns:1fr 1.4fr;gap:40px;margin-bottom:22px"><p class="s h2">נעים להכיר, זוהר</p><p>הדרך שלי עברה גם דרך עולם ההפקות והצילום, ושם למדתי עד כמה עור הוא הבסיס להכול. ביום החתונה חשוב לי שתהיי רגועה.</p></div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">'+im('set1.webp',220)+im('set2.webp',220)+im('ready.webp',220)+im('w5.webp',220)+'</div></div>';}],
+ ['D','תמונה גדולה וטקסט עליה','תמונה מהסט לכל הרוחב, והטקסט בכרטיס בהיר מעליה.',function(){return '<div style="position:relative">'+im('set1.webp',480,'50% 30%')+'<div style="position:absolute;top:60px;right:64px;background:var(--g);padding:30px 34px;max-width:440px"><p class="s h2">נעים להכיר, זוהר</p><p style="margin-top:10px">הדרך שלי עברה גם דרך עולם ההפקות והצילום. היום אני מאמינה שאיפור נכון מדגיש את מה שכבר יפה בך.</p><p class="s h3" style="margin-top:14px">שלך, זוהר</p></div></div>';}],
+ ['E','שאלות ותשובות קצרות','במקום פסקאות: שלוש שאלות קצרות עליה עם תשובה של שורה.',function(){return '<div class="pad" style="display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:start"><div><div style="width:120px;height:120px;border-radius:50%;overflow:hidden;margin-bottom:14px">'+im('me.webp',120)+'</div><p class="s h2">נעים להכיר, זוהר</p></div><div style="display:grid;gap:16px"><div><p class="s h3">איך הגעתי לאיפור</p><p>האהבה לאיפור הייתה איתי כל החיים, והדרך עברה דרך הפקות וצילום.</p></div><div><p class="s h3">מה הסגנון שלי</p><p>עדין עם נוכחות. קלאסי, נקי ומחמיא.</p></div><div><p class="s h3">מה חשוב לי ביום החתונה</p><p>שתהיי רגועה ותיהני מהרגעים שלפני.</p></div></div></div>';}]
+]},
+{id:'packages',name:'החבילות',why:'שתי חבילות בלי מחיר: כלה, וערב ומלוות.',rec:'A',o:[
+ ['A','שני כרטיסים','שתי חבילות זו לצד זו, כל אחת בכרטיס בצבע רך.',function(){return '<div class="pad" style="background:var(--sand)"><p class="s h2">החבילות</p><p class="sm" style="margin:6px 0 20px">המחיר משתנה לפי התאריך, האזור וכמה מתאפרות יש.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:20px"><div style="background:var(--g);padding:28px"><p class="s h3" style="font-size:32px;font-weight:200">חבילת כלה</p>'+lis(BRIDE.slice(0,6))+'<div style="margin-top:14px">'+WA+'</div></div><div style="background:var(--blush);padding:28px"><p class="s h3" style="font-size:32px;font-weight:200">ערב ומלוות</p>'+lis(EVE.slice(0,6))+'</div></div></div>';}],
+ ['B','טבלת השוואה','טבלה אחת: מה יש בכל חבילה, עם סימון ✓.',function(){var rows=['שיחת ייעוץ','הגעה למקום ההתארגנות','הכנה טובה של העור','טאצ\'אפים לפני היציאה','ערכת טאצ\'אפ','ליווי לאולם','ריסים'];var b=[1,1,1,1,1,1,0],e=[1,1,1,0,0,0,1];return '<div class="pad"><p class="s h2" style="margin-bottom:18px">החבילות</p><table style="width:100%;border-collapse:collapse;font-size:17px"><tr style="background:var(--sand)"><th style="text-align:right;padding:12px 16px;font-weight:400"></th><th style="padding:12px;font-weight:400">כלה</th><th style="padding:12px;font-weight:400">ערב ומלוות</th></tr>'+rows.map(function(r,i){return '<tr style="border-bottom:1px solid #eadfd6"><td style="padding:10px 16px">'+r+'</td><td style="text-align:center">'+(b[i]?'✓':'')+'</td><td style="text-align:center">'+(e[i]?'✓':'')+'</td></tr>'}).join('')+'</table></div>';}],
+ ['C','חבילה עם תמונה','כל חבילה עם תמונה משלה לצד הרשימה.',function(){return '<div class="pad"><p class="s h2" style="margin-bottom:20px">החבילות</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:28px"><div style="display:grid;grid-template-columns:160px 1fr;gap:18px">'+im('w2.webp',300)+'<div><p class="s h3" style="font-size:30px;font-weight:200">חבילת כלה</p>'+lis(BRIDE.slice(0,6))+'</div></div><div style="display:grid;grid-template-columns:160px 1fr;gap:18px">'+im('w4.webp',300)+'<div><p class="s h3" style="font-size:30px;font-weight:200">ערב ומלוות</p>'+lis(EVE.slice(0,6))+'</div></div></div></div>';}],
+ ['D','רשימה אחת עם לשוניות','לוחצים על "כלה" או "ערב ומלוות" ורואים רשימה אחת.',function(){return '<div class="pad" style="background:var(--sand);text-align:center"><p class="s h2">החבילות</p><div style="display:inline-flex;gap:6px;margin:16px 0 20px;background:var(--g);padding:5px;border-radius:999px"><span class="btn">חבילת כלה</span><span class="btn" style="background:transparent;color:var(--mi)">ערב ומלוות</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 40px;max-width:640px;margin:0 auto;text-align:right">'+lis(BRIDE.slice(0,4))+lis(BRIDE.slice(4))+'</div></div>';}],
+ ['E','שורות שנפתחות','שתי שורות, לוחצים ונפתחת הרשימה. הכי קצר בגובה.',function(){return '<div class="pad"><p class="s h2" style="margin-bottom:16px">החבילות</p><div style="background:var(--sand);padding:20px 24px;margin-bottom:8px"><div style="display:flex;justify-content:space-between"><span class="s h3" style="font-size:28px">חבילת כלה</span><span>−</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 30px;margin-top:10px">'+lis(BRIDE.slice(0,4))+lis(BRIDE.slice(4))+'</div></div><div style="background:var(--blush);padding:20px 24px;display:flex;justify-content:space-between"><span class="s h3" style="font-size:28px">ערב ומלוות</span><span>+</span></div></div>';}]
+]},
+{id:'faq',name:'שאלות נפוצות',why:'שבע שאלות שכלות שואלות.',rec:'A',o:[
+ ['A','כותרת מימין, שאלות משמאל','כותרת בצד אחד והשאלות בצד השני.',function(){return '<div class="pad" style="display:grid;grid-template-columns:1fr 2fr;gap:40px"><p class="s h2">שאלות שכלות שואלות</p><div><div style="background:var(--sand);padding:14px 18px;margin-bottom:4px"><p class="s h3" style="font-size:21px">'+Q[0][0]+'</p><p style="margin-top:6px">'+Q[0][1]+'</p></div>'+Q.slice(1).map(function(q){return '<p class="s h3" style="font-size:21px;padding:12px 18px">'+q[0]+'</p>'}).join('')+'</div></div>';}],
+ ['B','רשימה במרכז','כותרת ושאלות במרכז הדף, צר ונקי.',function(){return '<div class="pad" style="text-align:center"><p class="s h2" style="margin-bottom:18px">שאלות שכלות שואלות</p><div style="max-width:640px;margin:0 auto;text-align:right">'+Q.map(function(q){return '<div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eadfd6"><span class="s" style="font-size:20px;font-weight:300">'+q[0]+'</span><span>+</span></div>'}).join('')+'</div></div>';}],
+ ['C','שתי עמודות פתוחות','כל השאלות והתשובות גלויות, בשתי עמודות. בלי ללחוץ.',function(){return '<div class="pad"><p class="s h2" style="margin-bottom:20px">שאלות שכלות שואלות</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 40px">'+Q.slice(0,4).map(function(q){return '<div><p class="s h3" style="font-size:21px">'+q[0]+'</p><p style="margin-top:4px">'+q[1]+'</p></div>'}).join('')+'</div></div>';}],
+ ['D','על רקע ורוד','השאלות בתוך שטח ורוד מלא, עם תמונה בצד.',function(){return '<div class="pad" style="background:var(--blush);display:grid;grid-template-columns:2fr 1fr;gap:36px;align-items:center"><div><p class="s h2" style="margin-bottom:12px">שאלות שכלות שואלות</p>'+Q.map(function(q){return '<p class="s" style="font-size:20px;font-weight:300;padding:9px 0">'+q[0]+'</p>'}).join('')+'</div>'+im('w8.webp',380)+'</div>';}],
+ ['E','כמו שיחת וואטסאפ','השאלות כבועות של כלה, והתשובות כבועות של זוהר.',function(){return '<div class="pad" style="background:var(--sand)"><p class="s h2" style="text-align:center;margin-bottom:18px">שאלות שכלות שואלות</p><div style="max-width:620px;margin:0 auto;display:grid;gap:10px">'+Q.slice(0,3).map(function(q){return '<div style="justify-self:start;background:#fff;padding:10px 16px;border-radius:16px 16px 16px 4px;max-width:80%">'+q[0]+'</div><div style="justify-self:end;background:#e7d3c5;padding:10px 16px;border-radius:16px 16px 4px 16px;max-width:80%">'+q[1]+'</div>'}).join('')+'</div></div>';}]
+]},
+{id:'close',name:'הסיום והפוטר',why:'הקריאה האחרונה לשלוח הודעה.',rec:'C',o:[
+ ['A','פס ורוד במרכז','"יש לך תאריך?" וכפתור, על ורוד.',function(){return '<div style="background:var(--rose);text-align:center;padding:64px"><p class="s" style="font-size:60px;font-weight:100">יש לך תאריך?</p><p style="margin:10px 0 22px">בעונה התאריכים נתפסים מהר. שלחי הודעה ואני אחזור אלייך.</p>'+WA+'</div><div style="background:var(--deep);color:#ead9cc;padding:28px 64px;display:flex;justify-content:space-between"><span class="s" style="font-size:28px;color:#f4e9dc">זוהר ימיני</span><span>וואטסאפ · טלפון · אינסטגרם</span></div>';}],
+ ['B','על תמונה','הקריאה לפעולה על תמונה רחבה עם הצללה.',function(){return '<div style="position:relative;height:420px">'+im('w2.webp',420,'50% 30%')+'<div style="position:absolute;inset:0;background:rgba(45,32,26,.45)"></div><div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fbf7f2"><div><p class="s" style="font-size:58px;font-weight:100;color:#fbf7f2">יש לך תאריך?</p><p style="margin:10px 0 20px">שלחי הודעה ואני אחזור אלייך עם זמינות.</p>'+WA+'</div></div></div>';}],
+ ['C','תמונה וטקסט','חצי תמונה, חצי טקסט עם הכפתור והפרטים.',function(){return '<div style="display:grid;grid-template-columns:1fr 1fr;background:var(--blush)"><div style="padding:56px 64px;align-self:center"><p class="s" style="font-size:54px;font-weight:100">יש לך תאריך?</p><p style="margin:10px 0 22px">בעונה התאריכים נתפסים מהר, אז עדיף לבדוק מוקדם.</p>'+WA+'<p class="sm" style="margin-top:18px">054-3463688 · אינסטגרם makeup.zoharyeminy</p></div>'+im('w8.webp',420)+'</div>';}],
+ ['D','שורה אחת בפוטר','בלי פס נפרד: הפוטר עצמו כולל את המשפט והכפתור.',function(){return '<div style="background:var(--deep);color:#ead9cc;padding:44px 64px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center"><div><p class="s" style="font-size:40px;color:#f4e9dc">יש לך תאריך? בואי נבדוק.</p><p class="sm" style="color:#cdb3a3;margin-top:6px">זוהר ימיני · איפור כלות · 054-3463688</p></div>'+WA+'</div>';}],
+ ['E','תצוגה של ההודעה','מראה את הודעת הוואטסאפ שתישלח, כדי שיהיה ברור כמה זה פשוט.',function(){return '<div class="pad" style="background:var(--sand);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center"><div><p class="s" style="font-size:52px;font-weight:100">יש לך תאריך?</p><p style="margin:10px 0 20px">לחיצה אחת פותחת וואטסאפ עם ההודעה הזו:</p>'+WA+'</div><div style="background:#e9e1d8;padding:28px;border-radius:18px"><div style="background:#dcf8c6;padding:14px 18px;border-radius:14px 14px 4px 14px;max-width:90%;margin-inline-start:auto">היי זוהר, הגעתי מהאתר שלך ואני מחפשת מאפרת. אפשר לבדוק זמינות לתאריך שלי?</div></div></div>';}]
+]}
+];
+
+
+  var secs=document.getElementById('secs'), toc=document.getElementById('toc');
+  st.picks=st.picks||{}; st.pnotes=st.pnotes||{};
+  S.forEach(function(s){
+    var a=document.createElement('a');a.href='#v-'+s.id;a.textContent=s.name;a.id='toc-'+s.id;toc.appendChild(a);
+    var sec=document.createElement('div');sec.className='vsec';sec.id='v-'+s.id;
+    var h='<h3>'+s.name+'</h3><p class="why">'+s.why+'</p><div class="vopts">';
+    s.o.forEach(function(o){h+='<article class="vopt" data-sec="'+s.id+'" data-opt="'+o[0]+'"><div class="vframe"><div class="stage mk">'+o[3]()+'</div></div><div class="vmeta"><p class="t"><b>'+o[0]+'</b>'+o[1]+'</p><p class="d">'+o[2]+'</p><button class="choose" type="button">זה</button></div></article>';});
+    h+='</div><div class="vnote"><label for="n-'+s.id+'">הערה על החלק הזה (לא חובה)</label><textarea id="n-'+s.id+'" data-psec="'+s.id+'"></textarea></div>';
+    sec.innerHTML=h;secs.appendChild(sec);
+  });
+  function fit(){document.querySelectorAll('.vframe').forEach(function(f){var g=f.firstChild,z=f.clientWidth/1200;g.style.transform='scale('+z+')';f.style.height=Math.ceil(g.scrollHeight*z)+'px';});}
+  window.addEventListener('resize',fit);if(document.fonts)document.fonts.ready.then(fit);window.addEventListener('load',fit);
+  document.querySelectorAll('.vframe img').forEach(function(i){i.addEventListener('load',fit)});
+  function paintV(){
+    document.querySelectorAll('.vopt').forEach(function(o){var on=st.picks[o.dataset.sec]===o.dataset.opt;o.classList.toggle('sel',on);o.querySelector('.choose').textContent=on?'נבחר ✓':'זה';});
+    S.forEach(function(s){document.getElementById('toc-'+s.id).classList.toggle('done',!!st.picks[s.id]);var t=document.getElementById('n-'+s.id);if(document.activeElement!==t)t.value=st.pnotes[s.id]||'';});
+  }
+  secs.addEventListener('click',function(e){var b=e.target.closest('.choose');if(!b)return;var o=b.closest('.vopt');st.picks[o.dataset.sec]=st.picks[o.dataset.sec]===o.dataset.opt?'':o.dataset.opt;paintV();paint();save();});
+
+  function paint(){
+    var liked=0;
+    SITES.forEach(function(s){var el=document.getElementById('s'+s.n),L=st.likes[s.n]||[],no=!!st.no[s.n];if(L.length)liked++;
+      el.classList.toggle('liked',L.length>0);el.classList.toggle('nope',no);
+      el.querySelectorAll('.chip').forEach(function(c){c.setAttribute('aria-pressed',c.dataset.t==='no'?String(no):String(L.indexOf(c.dataset.t)>=0))});
+      var ta=el.querySelector('textarea');if(document.activeElement!==ta)ta.value=st.notes[s.n]||'';
+      el.querySelector('.tog').textContent=el.classList.contains('full')?'לחזור למסך הראשון':'להראות את המשך העמוד';});
+    document.querySelectorAll('[data-one]').forEach(function(g){var k=g.dataset.one;g.querySelectorAll('.opt').forEach(function(o){o.setAttribute('aria-pressed',String(st[k]===o.dataset.v))})});
+    document.querySelectorAll('[data-many]').forEach(function(g){var k=g.dataset.many;g.querySelectorAll('[data-v]').forEach(function(o){o.setAttribute('aria-pressed',String(st[k].indexOf(o.dataset.v)>=0))})});
+    document.querySelectorAll('[data-text]').forEach(function(t){if(document.activeElement!==t)t.value=st.text[t.dataset.text]||''});
+    paintV();
+    var np=S.filter(function(s){return st.picks[s.id]}).length;
+    document.getElementById('count').textContent='סימנת '+liked+' אתרים שאהבת, '+np+' מתוך '+S.length+' חלקים, '+st.photos.length+' תמונות'+(st.font?', פונט':'')+(st.color?', צבעים':'')+'.';
+  }
+
+  list.addEventListener('click',function(e){
+    var el=e.target.closest('.site');if(!el)return;var n=el.id.slice(1);
+    if(e.target.closest('.shot')||e.target.closest('.tog')){el.classList.toggle('full');paint();return;}
+    var c=e.target.closest('.chip');if(!c)return;
+    if(c.dataset.t==='no'){st.no[n]=!st.no[n];if(st.no[n])st.likes[n]=[];}
+    else{var L=st.likes[n]||[],i=L.indexOf(c.dataset.t);if(i>=0)L.splice(i,1);else L.push(c.dataset.t);st.likes[n]=L;st.no[n]=false;}
+    paint();save();
+  });
+  document.querySelectorAll('[data-one]').forEach(function(g){g.addEventListener('click',function(e){var o=e.target.closest('.opt');if(!o)return;var k=g.dataset.one;st[k]=st[k]===o.dataset.v?'':o.dataset.v;paint();save();})});
+  document.querySelectorAll('[data-many]').forEach(function(g){g.addEventListener('click',function(e){var o=e.target.closest('[data-v]');if(!o)return;var k=g.dataset.many,a=st[k],i=a.indexOf(o.dataset.v),max=+g.dataset.max||99;
+    if(i>=0)a.splice(i,1);else{if(a.length>=max)a.shift();a.push(o.dataset.v);}paint();save();})});
+  document.addEventListener('input',function(e){var t=e.target;if(t.tagName!=='TEXTAREA')return;if(t.dataset.n)st.notes[t.dataset.n]=t.value;else if(t.dataset.psec)st.pnotes[t.dataset.psec]=t.value;else st.text[t.dataset.text]=t.value;save();});
+
+  document.getElementById('go').addEventListener('click',function(){
+    var L=['היי רונן, אלה הבחירות שלי לאתר:',''];
+    var liked=SITES.filter(function(s){return (st.likes[s.n]||[]).length||st.notes[s.n]});
+    if(liked.length){L.push('אתרים שאהבתי:');liked.forEach(function(s){var t=(st.likes[s.n]||[]).join(', ');L.push('• '+s.n+'. '+s.name+(t?' - '+t:'')+(st.notes[s.n]?' ('+st.notes[s.n].trim()+')':''));});L.push('');}
+    var nos=SITES.filter(function(s){return st.no[s.n]}).map(function(s){return s.n});
+    if(nos.length)L.push('לא בשבילי: '+nos.join(', '));
+    L.push('פונט: '+(st.font||'לא בחרתי'));
+    L.push('צבעים: '+(st.color||'לא בחרתי'));
+    L.push('הרגשה: '+(st.feel.join(', ')||'לא בחרתי'));
+    L.push('תמונות (הראשונה לפתיחה): '+(st.photos.map(function(p){return PHOTOS.indexOf(p)+1}).join(', ')||'לא בחרתי'));
+    var sp=S.filter(function(s){return st.picks[s.id]||st.pnotes[s.id]});
+    if(sp.length){L.push('');L.push('סקיצות שבחרתי:');sp.forEach(function(s){var o=s.o.filter(function(x){return x[0]===st.picks[s.id]})[0];L.push('• '+s.name+': '+(o?o[0]+' - '+o[1]:'-')+(st.pnotes[s.id]?' ('+st.pnotes[s.id].trim()+')':''))});L.push('');}
+    var Q={important:'מה חשוב שכלה תבין',avoid:'מה לא לראות באתר',loves:'אתר שאני אוהבת',more:'עוד'};
+    Object.keys(Q).forEach(function(k){if((st.text[k]||'').trim())L.push(Q[k]+': '+st.text[k].trim())});
+    window.open('https://wa.me/'+PHONE+'?text='+encodeURIComponent(L.join('\n')),'_blank','noopener');
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
